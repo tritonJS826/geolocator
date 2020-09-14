@@ -1,8 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet } from "react-native";
 
+interface IHomePage {
+  
+}
 
-const HomePage = () => {
+const HomePage: React.FC<IHomePage> = () => {
   return (
     <>
       <Text style={styles.text}>HomePage</Text>

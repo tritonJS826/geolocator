@@ -1,8 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet } from "react-native";
 
+interface IArchivedRequestPage {
 
-const ArchivePage = () => {
+}
+
+const ArchivedRequestPage: React.FC<IArchivedRequestPage> =  () => {
   return (
     <>
       <Text style={styles.text}>ArchivedRequest</Text>
@@ -15,4 +18,5 @@ const styles = StyleSheet.create({
     color: "darkorange",
   }
 });
-export default ArchivePage;
+
+export default ArchivedRequestPage
