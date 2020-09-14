@@ -1,47 +1,24 @@
-# [React Router Example](https://reacttraining.com/react-router/web/guides/quick-start)
+task:
 
-<p>
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+Тестовое задание.
+Приложение состоит из двух экранов, навигация (переключение между экранами) осуществляется с помощью Tab Bar.
+Первый экран:
+1. при запуске приложения определить текущее местонахождение.
+2. на экране отобразить: координаты
+3. сделать реверс геокодинг текущих координат и отобразить адрес на экране
+4. запросить текущую погоду в данной точке и отобразить ее на экране
+второй экран:
+1. содержит таблицу с историей всех предыдущих запросов
+2. ячейка показывает дату и время запроса, и местоположение (координаты и город)
+3. при нажатии на ячейку открывается экран с результатами архивного запроса
+Опционально:
+добавить какую то опцию, оптимизацию, функцию или визуальное в приложение от себя. Описать почему это сделано, как это улучшает приложение и как это можно улучшить в будущем.
 
-React Router is a universal routing solution that you can use with Expo!
-This demo shows you how to setup your universal application to switch between web and native routers.
+Залить на гит, развернуть проект на https://www.netlify.com/, прислать ссылки на yury@nyblecraft.com
 
-### ⚽️ Running in the browser
+Не ставлю ограничений по времени, но чем раньше Вы сможете его выполнить, тем лучше.
+Помимо выполненного тестового задания укажите:
+- сколько времени заняло выполнение тестового задания;
+- размер заработной платы, который бы Вас устроил;
 
-- Create Expo project `expo init`
-- Install the plugin: `yarn add react-router-dom react-router-native` or `npm install --save react-router-dom react-router-native`
-- Create platform specific files to switch between web and native:
-  - [`react-router.js`](https://github.com/expo/examples/blob/master/with-react-router/react-router.js) for web.
-  - [`react-router.native.js`](https://github.com/expo/examples/blob/master/with-react-router/react-router.native.js) for iOS and Android.
-- Now you can use these files to create your universal routes! [Basic Example](App.js)
-  - [Deployed example](https://5e20d26f3f285b0766a74be2--stupefied-perlman-ca9443.netlify.com/about)
-
-![react-router-native-expo-web-example](https://i.imgur.com/XSCAX19.png "React Router native expo web example")
-![react-router-dom-expo-web-example](https://i.imgur.com/xl1yYmm.png "React Router dom expo web example")
-
-### Deploying to Netlify
-
-You may find get the following error when visiting URLs other than '/' on when your single page application (SPA) is deployed to Netlify:
-
-![netlify-error](https://i.imgur.com/BKFNGzH.png "Netlify: Page Not Found error")
-
-> **Page Not Found**
-> Looks like you've followed a broken link or entered a URL that doesn't exist on this site.
-
-The problem is that `react-router` creates the routes on the client side so when you visit pages other than the root (ex: `coolproject.netlify.com/about`), Netlify won't know how to redirect the route.
-
-Luckily the solution for this is simple! We can use the [redirects API](https://www.netlify.com/docs/redirects/) provided by Netlify.
-
-- Create a [`web/_redirects`](web/_redirects) to redirect all routes to the `index.html`:
-  ```
-  /*    /index.html   200
-  ```
-  - Creating files in the `web/` folder will copy them to the build folder (`web-build/`). Think of this like `public/` in Create React App projects.
-- Now simply rebuild (`expo build:web`) and deploy your web app (`netlify deploy --dir web-build`)!
-
-#### Example
-
-- ❌ Example deploying [**without** \_redirects](https://5e20d1844d610eee07f5c10e--stupefied-perlman-ca9443.netlify.com/about)
-- ✅ Example deploying [**with** \_redirects](https://5e20d26f3f285b0766a74be2--stupefied-perlman-ca9443.netlify.com/about)
+Если у Вас возникли какие-то вопросы по тестовому заданию либо любые иные вопросы, пишите мне сюда или на yury@nyblecraft.com.

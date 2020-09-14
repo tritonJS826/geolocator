@@ -2,37 +2,38 @@ import React from "react";
 import { StyleSheet, Text, View, Platform } from "react-native";
 import { Router, Route, Link } from "./react-router";
 
-const Home = () => <Text>Home</Text>;
-
-const About = () => <Text>About</Text>;
+import HomePage from "./src/pages/Home";
+import ArchivePage from "./src/pages/Archive";
+import Button from "./src/components/Button";
 
 const App = () => (
   <Router>
     <View style={styles.container}>
       <View style={styles.nav}>
         <Link to="/">
-          <Text>Home</Text>
+          <Button text="Home" onPress={()=>{}} />
         </Link>
-        <Link to="/about">
-          <Text>About</Text>
+        <Link to="/archive">
+          <Button text="Archive" onPress={()=>{}} />
         </Link>
       </View>
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/archive" component={ArchivePage} />
     </View>
   </Router>
 );
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 25,
-    padding: 10
+    padding: 30,
+    backgroundColor: "#000000",
+    minHeight: "100%",
   },
-  nav:{
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
+  nav: {
+    flexDirection: "row",
+    justifyContent: "space-around"
+  }
 });
 
 export default App;
