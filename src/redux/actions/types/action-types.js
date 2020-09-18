@@ -1,2 +1,9 @@
-export const ADD_EVENT_TO_ARCHIVE = 'ADD_EVENT_TO_ARCHIVE';
-export const DEL_EVENT_FROM_ARCHIVE = 'DEL_EVENT_FROM_ARCHIVE';
+// currentEvent
+export const SET_COORDINATES = 'SET_COORDINATES';
+export const SET_ADDRESS = 'SET_ADDRESS';
+export const SET_WEATHER = 'SET_WEATHER';
+export const SET_ERROR = 'ENABLE_ERROR';
+
+// archive
+export const SET_ARCHIVE = 'SET_ARCHIVE';
+export const DEL_EVENT_BY_ID = 'DEL_EVENT_BY_ID';

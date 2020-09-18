@@ -1,5 +1,6 @@
 import {
-  ADD_EVENT_TO_ARCHIVE,
+  SET_ARCHIVE,
+  DEL_EVENT_BY_ID,
 } from '../actions/types/action-types';
 
 const initialState = {
@@ -8,10 +9,15 @@ const initialState = {
 
 const userDataReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case ADD_EVENT_TO_ARCHIVE:
+    case SET_ARCHIVE:
       return {
         ...state,
-        archive: [state.archive, payload],
+        archive: payload,
+      };
+    case DEL_EVENT_BY_ID:
+      return {
+        ...state,
+        archive: state.archive.filter(({ id }) => id !== payload),
       };
     default:
       return state;

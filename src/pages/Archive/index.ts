@@ -1,3 +1,17 @@
-import ArchivePage from './ArchivePage';
+import { connect } from 'react-redux';
 
-export default ArchivePage;
+import ArchivePage from './ArchivePage';
+// import { ICurrentEvent } from '../../interfaces/currentEvent/ICurrentEvent';
+
+import { readArchFromStorage } from '../../middlewares/archive';
+
+import { setError } from '../../redux/actions/creators/currentEvent';
+
+const mapStateToProps = ({ archive }: any) => ({ archive });
+
+const actionCreators = {
+  readArchFromStorage,
+  setError,
+};
+
+export default connect(mapStateToProps, actionCreators)(ArchivePage);

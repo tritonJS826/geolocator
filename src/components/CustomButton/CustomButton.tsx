@@ -7,9 +7,7 @@ interface ICustomButtonProps {
   hidden?: boolean;
 }
 
-const CustomButton: React.FC<ICustomButtonProps> = ({
-  text, onPress, hidden,
-}) => {
+const CustomButton: React.FC<ICustomButtonProps> = ({ text, onPress, hidden }) => {
   if (hidden) return null;
   return (
     <TouchableOpacity style={styles.TouchableOpacity} onPress={onPress}>
@@ -24,6 +22,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#202020',
     padding: 10,
     borderRadius: 5,
+    marginLeft: '30%',
+    marginRight: '30%',
+    borderWidth: 1,
   },
   text: {
     color: 'darkorange',

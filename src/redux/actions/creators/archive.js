@@ -1,11 +1,10 @@
-import { ADD_EVENT_TO_ARCHIVE, DEL_EVENT_FROM_ARCHIVE } from '../types/action-types';
+import { SET_ARCHIVE, DEL_EVENT_BY_ID } from '../types/action-types';
 
-export const addEventToArcive = (event) => ({
-  action: ADD_EVENT_TO_ARCHIVE,
-  payload: event,
+export const setArchive = (newArchive) => ({
+  type: SET_ARCHIVE,
+  payload: newArchive,
 });
-
-export const delEvemtFromArchive = (eventId) => ({
-  action: DEL_EVENT_FROM_ARCHIVE,
-  payload: eventId,
+export const delEventByID = (id) => ({
+  type: DEL_EVENT_BY_ID,
+  payload: id,
 });
