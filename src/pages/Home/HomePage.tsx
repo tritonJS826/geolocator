@@ -3,7 +3,9 @@ import {
   Text, StyleSheet, View, Platform, Linking, ScrollView,
 } from 'react-native';
 import ModalWeb from 'modal-react-native-web';
+import Modal from 'react-native-modal';
 import timer from 'react-native-timer';
+import { Ionicons } from '@expo/vector-icons';
 
 import { ICurrentEvent } from '../../interfaces/currentEvent/ICurrentEvent';
 
@@ -78,93 +80,111 @@ const HomePage: React.FC<IHomePageProps> = ({
     }
   };
 
-  // const onRealTimeTracking = () => {
-  //   toogleModal(true);
-  //   toogleScan(!isScanEnable);
-  //
-  //   const SCAN = 'scan';
-  //   const scan = () => {
-  //     try {
-  //       getLocation();
-  //       addToArchive();
-  //     } catch (error) {
-  //       setError(error);
-  //     }
-  //   };
-  //
-  //   if (isScanEnable) {
-  //     timer.setInterval(SCAN, scan, 5000);
-  //   } else {
-  //     timer.clearInterval(SCAN);
-  //   }
-  // };
+  useEffect(() => {
+    const SCAN = 'scan';
+    if (isScanEnable) {
+      const scan = () => {
+        try {
+          getLocation();
+          addToArchive();
+          console.log('Starting');
+        } catch (error) {
+          setError(error);
+        }
+      };
+
+      timer.setInterval(SCAN, scan, 5000);
+      return () => timer.clearInterval(SCAN);
+    }
+    timer.clearInterval(SCAN);
+    console.log('Stopped');
+  }, [currentEvent, isScanEnable]);
+
+  const onRealTimeTracking = () => {
+    toogleScan(!isScanEnable);
+    toogleModal(true);
+  };
+
+  const loadingIcon = <Ionicons name="ios-refresh" size={10} color="red" />;
 
   return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.text}>
-          latitude:
-          {'\xa0'}
-          {coordinates.latitude}
-        </Text>
-        <Text style={styles.text}>
-          longitude:
-          {'\xa0'}
-          {coordinates.longitude}
-        </Text>
-        <CustomButton text="reload data" onPress={onReload} />
-        {/*<CustomButton text="Real time tracking ( 5sec )" onPress={onRealTimeTracking} />*/}
-        <Text style={styles.text}>
-          address:
-          {'\xa0'}
-          {address}
-        </Text>
-        <Text style={styles.text}>
-          Weather:
-          {'\xa0'}
-          {weather.description}
-        </Text>
-        <Text style={styles.text}>
-          Temperature:
-          {'\xa0'}
-          {'\xa0'}
-          {weather.temperatureNow}
-          {'\xa0'}
-          {'\u00B0'}
-          F
-        </Text>
-        <Text style={styles.text}>
-          Humidity:
-          {'\xa0'}
-          {weather.humidity}
-          %
-        </Text>
-        <Text style={styles.text}>
-          Wind speed:
-          {'\xa0'}
-          {weather.windSpeed}
-          {'\xa0'}
-          m/s
-        </Text>
-        {Platform.OS !== 'web' && (
-          <MyMap longitude={coordinates.longitude} latitude={coordinates.latitude} />
-        )}
-        {Platform.OS === 'web' && (
-          <CustomButton
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.text}>
+        latitude:
+        {'\xa0'}
+        {coordinates?.latitude ?? loadingIcon}
+      </Text>
+      <Text style={styles.text}>
+        longitude:
+        {'\xa0'}
+        {coordinates?.longitude ?? loadingIcon}
+      </Text>
+      <CustomButton text="reload data" onPress={onReload} />
+      <CustomButton text="Real time tracking ( 5sec )" onPress={onRealTimeTracking} />
+      <Text style={styles.text}>
+        address:
+        {'\xa0'}
+        {address || loadingIcon}
+      </Text>
+      <Text style={styles.text}>
+        Weather:
+        {'\xa0'}
+        {weather?.description ?? loadingIcon}
+      </Text>
+      <Text style={styles.text}>
+        Temperature:
+        {'\xa0'}
+        {'\xa0'}
+        {weather?.temperatureNow ?? loadingIcon}
+        {'\xa0'}
+        {'\u00B0'}
+        F
+      </Text>
+      <Text style={styles.text}>
+        Humidity:
+        {'\xa0'}
+        {weather?.humidity ?? loadingIcon}
+        %
+      </Text>
+      <Text style={styles.text}>
+        Wind speed:
+        {'\xa0'}
+        {weather?.windSpeed ?? loadingIcon}
+        {'\xa0'}
+        m/s
+      </Text>
+      {Platform.OS !== 'web' && (
+        <MyMap longitude={coordinates.longitude} latitude={coordinates.latitude} />
+      )}
+      {Platform.OS === 'web' && (
+        <CustomButton
           text="Open Map"
-            onPress={() => Linking.openURL(
-              `http://www.google.com/maps/place/${coordinates.latitude}, ${coordinates.longitude}`)}
-              />
-            )}
-        <View>
-          <CustomButton text="Add to archive" onPress={addToArchive} />
-        </View>
-        {/*<ModalWeb visible={isModalVisible}>
+          onPress={() => Linking.openURL(
+            `http://www.google.com/maps/place/${coordinates.latitude}, ${coordinates.longitude}`,
+          )}
+        />
+      )}
+      <View>
+        <CustomButton text="Add to archive" onPress={addToArchive} />
+      </View>
+      {Platform.OS !== 'web' && (
+        <Modal isVisible={isModalVisible}>
           <View style={styles.container}>
             <Text style={styles.text}>{`scanner ${isScanEnable ? 'on' : 'off'}`}</Text>
             <CustomButton text="ok" onPress={() => toogleModal(false)} />
           </View>
-          </ModalWeb>*/}
-          </ScrollView>
+        </Modal>
+      )}
+
+      {Platform.OS === 'web' && (
+        <ModalWeb visible={isModalVisible} ariaHideApp={false}>
+          <View style={styles.container}>
+            <Text style={styles.text}>{`scanner ${isScanEnable ? 'on' : 'off'}`}</Text>
+            <CustomButton text="ok" onPress={() => toogleModal(false)} />
+          </View>
+        </ModalWeb>
+      )}
+    </ScrollView>
   );
 };
 

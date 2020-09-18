@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
     backgroundColor: '#000000',
-    minHeight: '100%',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',

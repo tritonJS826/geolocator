@@ -7,9 +7,17 @@ import getForecast from '../../middlewares/getForecast';
 import getPlace from '../../middlewares/getPlace';
 import { writeArchToStorage, readArchFromStorage } from '../../middlewares/archive';
 
+import { ICurrentEvent } from '../../interfaces/currentEvent/ICurrentEvent';
+
 import { setError } from '../../redux/actions/creators/currentEvent';
 
-const mapStateToProps = ({ currentEvent, archive }: { currentEvent: any, archive: any }) => ({ currentEvent, archive });
+const mapStateToProps = ({
+  currentEvent,
+  archive,
+}: {
+  currentEvent: ICurrentEvent;
+  archive: { archive: ICurrentEvent[] };
+}) => ({ currentEvent, archive });
 
 const actionCreators = {
   getLocation,

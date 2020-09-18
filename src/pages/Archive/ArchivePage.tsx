@@ -77,7 +77,7 @@ const ArchivePage: React.FC<IArchivePageProps> = ({
             </View>
           );
         })}
-        {Platform.OS === 'web' && <ModalWeb visible={isModalViseble}>
+        {Platform.OS === 'web' && <ModalWeb visible={isModalViseble} ariaHideApp={false}>
           {!modalEvent && <Text>error</Text>}
           {modalEvent && (
             <View style={{ flex: 1 }}>
