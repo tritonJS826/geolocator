@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Text, StyleSheet, View, Platform, Linking, ScrollView,
 } from 'react-native';
@@ -55,8 +55,8 @@ const HomePage: React.FC<IHomePageProps> = ({
     try {
       if (!coordinates.longitude) return;
       const { latitude, longitude } = currentEvent.coordinates;
-      getForecast(latitude, longitude);
-      getPlace(latitude, longitude);
+        getForecast(latitude, longitude);
+        getPlace(latitude, longitude);
     } catch (error) {
       setError(error);
     }
@@ -87,7 +87,6 @@ const HomePage: React.FC<IHomePageProps> = ({
         try {
           getLocation();
           addToArchive();
-          console.log('Starting');
         } catch (error) {
           setError(error);
         }
@@ -97,7 +96,6 @@ const HomePage: React.FC<IHomePageProps> = ({
       return () => timer.clearInterval(SCAN);
     }
     timer.clearInterval(SCAN);
-    console.log('Stopped');
   }, [currentEvent, isScanEnable]);
 
   const onRealTimeTracking = () => {

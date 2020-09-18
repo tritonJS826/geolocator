@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   text: {
+    textAlign: 'center',
     color: 'darkorange',
   },
 });
